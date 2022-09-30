@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    h3 {
+      text-align: center;
+      font-size: 40px;
+      margin-top: 0px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 30%;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 30%;
+    }
+
+    body {
+      background-color: #39ac37;
+      color: white;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #muscle:hover {
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 400px) {
+      p,
+      h2,
+      h3 {
+        font-size: 35px;
+      }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <title>We simply don't stop</title>
+  </head>
+  <body>
+    <div class="content">
+      <h3>Do konca pracovného dňa zostáva:</h3>
+      <p id="demo"></p>
+      <h2 id="muscle">💪</h2>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Jan 01, 2023 00:00:00").getTime();
+    
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+          // Get today's date and time
+          var now = new Date().getTime();
+    
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+    
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+          // Display the result in the element with id="demo"
+          document.getElementById("demo").innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "😱";
+          }
+        }, 1000);
+
+        // Add some muscle confetti
+        const jsConfetti = new JSConfetti();
+        const confetti = () => {jsConfetti.addConfetti({
+            emojis: ['💪', '🚀', '💥']
+        })};
+        document.querySelector('#muscle').addEventListener('click', confetti);
+      </script>
+  </body>
+</html>
